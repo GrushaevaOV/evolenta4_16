@@ -36,8 +36,8 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable int id, @RequestBody Person person) {
-        person.setId(id);
         HttpStatus status = repository.existsById(id) ? HttpStatus.OK : HttpStatus.CREATED;
+        person.setId(id);
         return new ResponseEntity(repository.save(person), status);
     }
 
